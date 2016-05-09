@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<!-- MATCH THREE BY AHMED ASHKIR -->
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style"
+		content="black" />
+
+		<title>Match Three</title>
+		<!-- CSS -->
+		<link rel="apple-touch-icon" href="icon.png"/>
+		<link rel="apple-touch-icon-precomposed"
+		href="images/ios-icon.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="72x72"
+		href="images/ios-icon-ipad.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="114x114"
+		href="images/ios-icon-iphone-retina.png"/>
+		<link rel="apple-touch-icon-precomposed" sizes="144x144"
+		href="images/ios-icon-ipad-retina.png"/>
+
+		<link rel="stylesheet" type="text/css" href="css/matchThree.css">
+		<link rel="stylesheet" type="text/css" href="css/fontfaces.css" />
+		<link rel="stylesheet"
+			href="styles/mobile.css"
+			media="screen and (max-device-width: 768px)
+					and (orientation: portrait),
+					screen and (max-device-width: 1024px)
+					and (orientation: landscape)"/>
+		<!-- Javascript -->
+		<script type="text/javascript" src="js/matchThree.js"></script>
+		<script type="text/javascript">
+			window.addEventListener("load", function(){
+				matchThree.load("js/dom.js");
+				if (matchThree.isStandalone()) {
+					matchThree.load("js/screen.splash.js", matchThree.setup);
+					matchThree.load("js/screen.mainmenu.js");
+					matchThree.load("js/screen.score.js");
+					matchThree.load("js/screen.about.js");
+					matchThree.load("js/input.js");
+					matchThree.load("js/audio.js");
+					matchThree.load("js/storage.js");
+
+					if(matchThree.hasWebWorkers()) {
+						matchThree.preload("js/board.worker.js");
+						matchThree.load("js/board.worker-interface.js");
+					} else {
+						matchThree.load("js/board.js");
+					}
+					matchThree.load("js/screen.game.js");
+					matchThree.load("js/display.canvas.js");
+				} else {
+					matchThree.load("scripts/screen.install.js", matchThree.setup);
+				}
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="game">
+			<div class="screen" id="screen-splash">
+				<h1 class="logo">BonBon <br />Breaker</h1>
+				<div class="progress">
+					<div class="indicator"></div>
+				</div>
+				<span class="continue">Click to continue</span>
+			</div>
+
+		<div class="screen" id="screen-mainmenu">
+			<h2 class="logo">BonBon<br />Breaker </h2>
+			<ul class="menu">
+				<li><button name="screen-game">Play</button></li>
+				<li><button name="screen-scores">Scores</button></li>
+				<li><button name="screen-about">About</button></li>
+				<li><button name="screen-splash">Quit</button></li>
+			</ul>
+		</div>
+
+		<div class="screen" id="screen-game">
+			<div class="game-board">
+				<div class="announcement"></div>
+			</div>
+			<footer>
+				<button class="exit">Exit</button>
+				<button class="pause">Pause</button>
+			</footer>
+
+			<div class="game-info">
+				<label class="level">Level: <span></span></label>
+				<label class="score">Score: <span></span></label>
+			</div>
+
+			<div class="time">
+				<div class="indicator"></div>
+			</div>
+
+			<div class="pause-overlay">
+				<div class="pause-text">Paused</div>
+			</div>
+		</div>
+
+		<div class="screen" id="screen-scores">
+			<h2 class="logo">High score</h2>
+			<ol class="score-list"></ol>
+			<footer>
+				<button name="back">Back</button>
+			</footer>
+		</div>
+
+		<div class="screen" id="screen-about">
+			<h2 class="logo">About</h2>
+			<p> Bon-Bon Breaker is a game about destroying delicous candies. <br> 
+			<br>Match three candies to get points. Try to beat your highscore! <br>
+			<footer>
+				<button name="back">Back</button>
+			</footer>
+		</div>
+
+		<div class="screen" id="screen-install">
+			<h1 class="logo">BonBon <br/></br>Breaker</h1>
+				<span>
+					Click the <img src="images/install-icon.png"
+					alt="Install icon">
+					button to install the game to your home screen.
+				</span>
+		</div>
+	</body>
+
+</html>
